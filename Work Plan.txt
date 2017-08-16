@@ -1,0 +1,9 @@
+1. Identify a node that everyone inherits from i.e. Base page
+
+2. Look for all the nodes that inherit from such parent node
+
+3. Identify is all the imports from the base node are being used or not used in the child node
+  3.1
+
+4. Identify all the common methods and functions used between child nodes to create a new file
+  4.1
