@@ -5,7 +5,7 @@ location = '/Users/carlosarenas/Dropbox/Work/Zemoga/Projects/Roku/Hulu/cube-roku
 xmlfiles = [] #list to store all XML files found at location
 parentNode = "BasePage"
 basePageFiles = []
-scriptsFunctions = {}
+listScriptFunctions = []
 
 def findChildNodes():
     counter = 0 #keep a count of all files found
@@ -85,19 +85,24 @@ def dependenciesForParentNode():
                 # print subName
                 subList.append(str(subName))
 
-        scriptsFunctions['script_name:'] = scriptName
-        scriptsFunctions['script_functions:'] = functionList
-        scriptsFunctions['script_subs:'] = subList
+        scriptsFunction = {}
+        scriptsFunction['script_name:'] = scriptName
+        scriptsFunction['script_functions:'] = functionList
+        scriptsFunction['script_subs:'] = subList
+        listScriptFunctions.append(scriptsFunction)
 
-        print "---------------------------------------------------------"
+        # print "---------------------------------------------------------"
         # print scriptsFunctions
-        print json.dumps(scriptsFunctions)
+        print json.dumps(listScriptFunctions)
 
 def functionsUsedByChildren():
     for script in basePageFiles:
-        lines = [line.rstrip('\n') for line in open(filePath)]
+        lines = [line.rstrip('\n') for line in open(script)]
         for line in lines:
-            # for functions in arreglo de diccionario
+            print line
+            # for functions in listScriptFunctions:
+            #     print fuctions
+
 
 def cleanString(stringToClean):
     stringToClean = stringToClean.strip()
@@ -108,4 +113,5 @@ def cleanString(stringToClean):
     return stringToClean
 
 findChildNodes()
-# dependenciesForParentNode()
+dependenciesForParentNode()
+functionsUsedByChildren()
